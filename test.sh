@@ -1,7 +1,8 @@
 #!/bin/bash
 function main() {
     ls
-    la
+    a=1
+    echo $a
 }
 
 main "$@"
