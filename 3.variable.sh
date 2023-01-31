@@ -9,3 +9,4 @@ EOF
 
 msg="hello world"
 echo $msg
+#echo "第一个元素为: ${msg[0]}"
