@@ -8,37 +8,74 @@ echo "2乘2等于`expr 2 \* 2`"
 echo "2除2等于`expr 2 / 2`"
 echo "2除2取余$(expr 2 % 2)"
 
-# 关系运算符
+# 关系运算符、比较运算符
+echo "关系运算符"
 a=10
 b=20
+
 if [ $a -eq $b ]; then # 检测两个数是否相等，相等返回 true。
 echo "a=b"
 else
   echo "a!=b"
 fi
+if ((a == b))
+then
+  echo "$a equal $b"
+  else
+    echo "$a not equal $b"
+    fi
+if [ $a == $b ]
+then
+  echo "$a equal $b"
+  else
+    echo "$a not equal $b"
+    fi
+if [ $a = $b ]
+then
+  echo "$a equal $b"
+  else
+    echo "$a not equal $b"
+    fi
+
 if [ $a -ne $b ]; then # 检测两个数是否不相等，不相等返回 true。
 echo "a!=b"
 else
   echo "a=b"
   fi
+if ((a != b))
+then
+  echo "$a not equal $b"
+  else
+    echo "$a equal $b"
+    fi
+if [ $a != $b ]
+then
+   echo "$a != $b : a 不等于 b"
+else
+   echo "$a == $b: a 等于 b"
+fi
+
 if [ $a -gt $b ] # 检测左边的数是否大于右边的，如果是，则返回 true。
 then
   echo "a>b"
   else
     echo "a<=b"
     fi
+
 if [ $a -lt $b ] # 检测左边的数是否小于右边的，如果是，则返回 true。
 then
   echo "a<b"
   else
     echo "a>=b"
     fi
+
 if [ $a -ge $b ] # 检测左边的数是否大于等于右边的，如果是，则返回 true。
 then
   echo "a>=b"
   else
     echo "a<b"
     fi
+
 if [ $a -le $b ] # 检测左边的数是否小于等于右边的，如果是，则返回 true。
 then
   echo "a<=b"
@@ -46,40 +83,69 @@ then
     echo "a>b"
     fi
 
-# 布尔运算符
-#if [ ! false ]       # 非运算，返回 true
-#then
-#  echo "True"
-#  else
-#    echo "False"
-#    fi
-#if [ true -o false ] # 或运算，返回 true
-#then
-#  echo "True"
-#  else
-#    echo "False"
-#    fi
-#if [ true -a false ] # 与运算，返回 false
-#then
-#  echo "2 True"
-#  else
-#    echo "not 2 True"
-#    fi
+# 布尔运算符 -o表示或运算，!表示非运算，-a表示与运算
+echo "Bool operator"
 a=10
 b=20
 
-if [ $a != $b ]
+# 非运算
+if ! (( a == b ))
 then
-   echo "$a != $b : a 不等于 b"
-else
-   echo "$a == $b: a 等于 b"
+   echo "$a is not equal to $b"
 fi
+# 值得注意的是，因为 Shell 语言并没有布尔型。所以如果你尝试在非运算符后面跟上一个「布尔值」或false|true，那么你会得到错误的结果。
+if [ ! false ]  # 打印false，不是true
+then
+  echo "true"
+  else
+    echo "false"
+fi
+if [ false ]  # 打印true，不是false
+then
+  echo "true"
+  else
+    echo "false"
+fi
+if [ ! true ]  # 打印true，不是false
+then
+  echo "false"
+  else
+    echo "true"
+fi
+result=true
+if [ ! $result ]  # 打印false，if 表达式中的字符串会被当成是一个字符串，字符串肯定就是 true 了，加个否定自然就是false，注意!要和后面的有空格
+then
+  echo "true"
+  else
+    echo "false"
+fi
+if [ !$result ]  # 若!没有空格，则[]里面的整个都会当成一个字符串，那么就会输出true
+then
+  echo "true"
+  else
+    echo "false"
+fi
+result=false
+if [ ! $result ]  # 打印false，if 表达式中的字符串会被当成是一个字符串，字符串肯定就是 true 了
+then
+  echo "true"
+  else
+    echo "false"
+fi
+:<<EOF
+按照我们的理解，上面的例子应该不会打印出 Hello 字符，但实际结果是会打印。这是因为 Shell 中根本就没有布尔类型的值，
+所以 ，所以就会打印 Hello。其实如果我们随便输入一串字符，
+结果还是会输出 Hello。
+EOF
+
+# 与运算
 if [ $a -lt 100 -a $b -gt 15 ]
 then
    echo "$a 小于 100 且 $b 大于 15 : 返回 true"
 else
    echo "$a 小于 100 且 $b 大于 15 : 返回 false"
 fi
+# 或运算
 if [ $a -lt 100 -o $b -gt 100 ]
 then
    echo "$a 小于 100 或 $b 大于 100 : 返回 true"
@@ -93,10 +159,10 @@ else
    echo "$a 小于 5 或 $b 大于 100 : 返回 false"
 fi
 
-# 逻辑运算符。 [ ]中使用-a和-o表示逻辑与和逻辑或，[[ ]]使用&&和||来表示
-a=10
+# 逻辑运算符，[ ]中使用-a和-o表示逻辑与和逻辑或，[[ ]]使用&&表示逻辑与 和 ||来表示逻辑或
+echo "逻辑运算符"
+a=100
 b=20
-
 if [[ $a -lt 100 && $b -gt 100 ]]
 then
    echo "返回 true"
