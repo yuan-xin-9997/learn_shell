@@ -182,3 +182,20 @@ echo $((a+b*c)) # 19
 echo $(( (a+b)/c )) # 6
 echo $(( (a*b)%c)) # 1
 echo $(( $a + $b * $c )) # 19
+
+# 7. 截取字符串 #*/     %/*   ##*
+:<<EOF
+${str#*/}  表示从左往右取str第一个“/”分隔符之右边的所有内容；
+${str%/*} 表示从左往右取str最后一个“/”分隔符之左边的所有内容；
+${file##*/}：删掉str最后一个 /  及其左边的字符串
+例如：
+下面两个echo，依次输出：
+ZW_SX/ed_cr/fv_123
+QA/ZW_SX/ed_cr
+fv_123
+EOF
+table=QA/ZW_SX/ed_cr/fv_123
+echo ${table#*/}
+echo ${table%/*}
+echo ${table##*/}
+
