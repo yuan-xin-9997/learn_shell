@@ -199,3 +199,28 @@ echo ${table#*/}
 echo ${table%/*}
 echo ${table##*/}
 
+
+# 使用for循环遍历字符串
+:<<EOF
+使用for循环遍历字符串的时候默认采用空格作为分隔符
+例如：
+s1="1 2 3 4 5"
+s2="1 2 3 4 56789"
+EOF
+s1="1 2 3 4 5"
+s2="1 2 3 4 56789"
+for i in $s1
+do
+  echo $i
+done
+
+for i in $s2
+do
+  echo $i
+done
+
+# 若变量后面挨着其他字符串，会同字符串最后一个字符串组合输出
+for i in $s2:hhh
+do
+  echo $i
+done
