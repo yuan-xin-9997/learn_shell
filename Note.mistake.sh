@@ -190,14 +190,12 @@ ${str%/*} 表示从左往右取str最后一个“/”分隔符之左边的所有
 ${file##*/}：删掉str最后一个 /  及其左边的字符串
 例如：
 下面两个echo，依次输出：
-ZW_SX/ed_cr/fv_123
-QA/ZW_SX/ed_cr
-fv_123
 EOF
+
 table=QA/ZW_SX/ed_cr/fv_123
-echo ${table#*/}
-echo ${table%/*}
-echo ${table##*/}
+echo ${table#*/}  # ZW_SX/ed_cr/fv_123
+echo ${table%/*}  # QA/ZW_SX/ed_cr
+echo ${table##*/}  # fv_123
 
 
 # 使用for循环遍历字符串
